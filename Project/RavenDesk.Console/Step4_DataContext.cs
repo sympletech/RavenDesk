@@ -1,4 +1,6 @@
-﻿using RavenDesk.Core;
+﻿using System;
+using System.Collections.Generic;
+using RavenDesk.Core;
 using RavenDesk.Core.Data;
 using RavenDesk.Core.Models;
 
@@ -20,28 +22,37 @@ namespace RavenDesk.Console
         {
             using (Db = new DataContext())
             {
-                var sKing = new Author(Db)
+                var dObjects = new List<IDataObject>();
+                dObjects.Add(new Author(Db)
                                 {
                                     FirstName = "Steven",
                                     LastName = "King",
-                                };
-
-                var shining = new Book(Db)
+                                });
+                dObjects.Add(new Book(Db)
                                   {
                                       Title = "The Shining",
                                       Summary = "A Hotel In Hell",
-                                  };
+                                  });
+                dObjects.Add(new Book(Db)
+                {
+                    Title = "IT",
+                    Summary = "A Clown In The Gutter",
+                });
+                dObjects.Add(new Character(Db)
+                    {
+                        Name = "Jack Torrance",
+                        Description = "A Little Off His Rocker",
+                        CatchPhrase = "I'm Not Gonna Hurt Ya, I'm Just Gona Bash Your Brains In"
+                    });
+                dObjects.Add(new Character(Db)
+                {
+                    Name = "Pennywise the Dancing Clown",
+                    Description = "Freaky Clown With Some Dental Problems",
+                    CatchPhrase = "Want a balloon?"
+                });
 
-                var jackTorrance = new Character(Db)
-                                       {
-                                           Name = "Jack Torrance",
-                                           Description = "A Little Off His Rocker",
-                                           CatchPhrase = "I'm Not Gonna Hurt Ya, I'm Just Gona Bash Your Brains In"
-                                       };
+                dObjects.ForEach(x=>x.Save());
 
-                sKing.Save();
-                shining.Save();
-                jackTorrance.Save();
             }
         }
 
@@ -50,17 +61,47 @@ namespace RavenDesk.Console
             using (Db = new DataContext())
             {
                 var sKing = Author.Get(Db, x => x.LastName == "King");
+                
                 var shining = Book.Get(Db, x => x.Title == "The Shining");
                 var jackTorrance = Character.Get(Db, x => x.Name == "Jack Torrance");
 
                 sKing.AddRelationship(shining);
                 sKing.AddRelationship(jackTorrance);
-                var result = sKing.Save();
-
                 shining.AddRelationship(jackTorrance);
-                result = shining.Save();
+
+                var it = Book.Get(Db, x => x.Title == "IT");
+                var pennywise = Character.Get(Db, x => x.Name == "Pennywise the Dancing Clown");
+
+                sKing.AddRelationship(it);
+                sKing.AddRelationship(pennywise);
+                it.AddRelationship(pennywise);
+
 
             }
-        }    
+        }
+  
+        public void VerifyRelationships()
+        {
+            var sKing = Author.Get(Db, x => x.LastName == "King");
+            System.Console.WriteLine("Steven King Relationships");
+            foreach (var rObj in sKing.RelatedObjects)
+            {
+                System.Console.WriteLine(rObj.Id);
+            }
+
+            var shining = Book.Get(Db, x => x.Title == "The Shining");
+            System.Console.WriteLine("\n Shining Relationships");
+            foreach (var rObj in shining.RelatedObjects)
+            {
+                System.Console.WriteLine(rObj.Id);
+            }
+
+            var it = Book.Get(Db, x => x.Title == "IT");
+            System.Console.WriteLine("\n IT Relationships");
+            foreach (var rObj in it.RelatedObjects)
+            {
+                System.Console.WriteLine(rObj.Id);
+            }
+        }
     }
 }

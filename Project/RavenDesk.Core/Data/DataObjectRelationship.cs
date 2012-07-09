@@ -8,6 +8,10 @@ namespace RavenDesk.Core.Data
 {
     public class DataObjectRelationship
     {
+        public DataObjectRelationship()
+        {
+        }
+
         public DataObjectRelationship(IDataObject dataObjectA, IDataObject dataObjectB)
         {
             this.DataObjects = new List<DataObjectRelationshipEntry>();

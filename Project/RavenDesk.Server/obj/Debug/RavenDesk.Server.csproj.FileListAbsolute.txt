@@ -3,3 +3,8 @@ C:\Users\Daniel\Projects\RavenDesk\Project\RavenDesk.Server\bin\RavenDesk.Server
 C:\Users\Daniel\Projects\RavenDesk\Project\RavenDesk.Server\obj\Debug\RavenDesk.Server.csprojResolveAssemblyReference.cache
 C:\Users\Daniel\Projects\RavenDesk\Project\RavenDesk.Server\obj\Debug\RavenDesk.Server.dll
 C:\Users\Daniel\Projects\RavenDesk\Project\RavenDesk.Server\obj\Debug\RavenDesk.Server.pdb
+F:\Projects\RavenDesk\Project\RavenDesk.Server\bin\RavenDesk.Server.dll
+F:\Projects\RavenDesk\Project\RavenDesk.Server\bin\RavenDesk.Server.pdb
+F:\Projects\RavenDesk\Project\RavenDesk.Server\obj\Debug\RavenDesk.Server.csprojResolveAssemblyReference.cache
+F:\Projects\RavenDesk\Project\RavenDesk.Server\obj\Debug\RavenDesk.Server.dll
+F:\Projects\RavenDesk\Project\RavenDesk.Server\obj\Debug\RavenDesk.Server.pdb

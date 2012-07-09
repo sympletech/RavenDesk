@@ -17,13 +17,10 @@ namespace RavenDesk.Console
             //crud.DeleteSomething();
 
             var dContext = new Step4_DataContext();
-            //dContext.InitDatabase();
-            //dContext.CreateSomeThings();
-            dContext.CreateSomeRelationships();
-        }
+            dContext.InitDatabase();
+            dContext.CreateSomeThings();
+            //dContext.CreateSomeRelationships();
 
-        static void InitDB()
-        {
             
         }
     }

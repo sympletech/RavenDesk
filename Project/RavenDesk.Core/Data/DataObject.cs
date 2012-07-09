@@ -24,16 +24,34 @@ namespace RavenDesk.Core.Data
 
         //-- Relationships
 
+        /// <summary>
+        /// LookUp an Existing Relationship
+        /// </summary>
         private DataObjectRelationship FindRelationship(IDataObject relatedDataObject)
         {
-            return Db.Session.Query<DataObjectRelationship>()
-                .FirstOrDefault(x =>
-                    x.DataObjects.Any(y => y.DataObjectId == this.Id)
-                    && x.DataObjects.Any(y => y.DataObjectId == relatedDataObject.Id));            
+            return (Db.Session.Query<DataObjectRelationship>()
+                //Get Relationships With This in them
+                .Where(x => x.DataObjects.Any(y => y.DataObjectId == this.Id)).ToList()
+
+                //Intersect The Results with Relationships that have the Related Item in them
+                .Intersect(
+                    Db.Session.Query<DataObjectRelationship>()
+                        .Where(x => x.DataObjects.Any(y => y.DataObjectId == relatedDataObject.Id))
+
+                //Take The First Item in the Collection
+                )).FirstOrDefault();
         }
 
+        /// <summary>
+        /// Add A relationship to object
+        /// </summary>
         public void AddRelationship(IDataObject relatedDataObject)
         {
+            if(string.IsNullOrEmpty(this.Id))
+            {
+                this.Save();
+            }
+
             if(FindRelationship(relatedDataObject) == null)
             {
                 var objRelationship = new DataObjectRelationship(this, relatedDataObject);
@@ -42,24 +60,74 @@ namespace RavenDesk.Core.Data
             }
         }
 
+        /// <summary>
+        /// Remove an existing relationship from object
+        /// </summary>
         public void RemoveRelationship(IDataObject unRelatedDataObject)
         {
             var relationship = FindRelationship(unRelatedDataObject);
             if(relationship != null)
             {
                 Db.Session.Delete(relationship);
+                Db.Session.SaveChanges();
             }
         }
         
         [JsonIgnore]
-        public IQueryable<DataObjectRelationship> RelatedObjects
+        public List<IDataObject> RelatedObjects
         {
             get
             {
-                return Db.Session.Query<DataObjectRelationship>()
+                //Get The Relationship Entries
+                var relationships = Db.Session.Query<DataObjectRelationship>()
                     .Where(x => x.DataObjects
                         .Any(y => y.DataObjectId == this.Id));
+
+                //Read Through each relationship entry and add to results 
+                //(unless it's this object or already exists in the collection)
+                var results = new List<IDataObject>();
+                foreach (var relationship in relationships)
+                {
+                    foreach (var relationshipEntry in relationship.DataObjects)
+                    {
+                        if ((results.Any(x =>x.Id == relationshipEntry.DataObjectId) != true)
+                            && this.Id != relationshipEntry.DataObjectId)
+                        {
+                            results.Add(Db.Session.Load<dynamic>(relationshipEntry.DataObjectId));
+                        }                        
+                    }
+                }
+
+                return results;
             }
+        }
+
+        public List<DOType> QueryRelatedObjects<DOType>() where DOType : IDataObject
+        {
+            //Get The Relationship Entries
+            var relationships = Db.Session.Query<DataObjectRelationship>()
+                .Where(x => x.DataObjects
+                                .Any(y =>
+                                     y.DataObjectId == this.Id
+                                ));
+
+            //Read Through each relationship entry and add to results 
+            //(unless it's this object or already exists in the collection)
+            var results = new List<DOType>();
+            foreach (var relationship in relationships)
+            {
+                foreach (var relationshipEntry in relationship.DataObjects)
+                {
+                    if ((results.Any(x => x.Id == relationshipEntry.DataObjectId) != true)
+                        && this.Id != relationshipEntry.DataObjectId
+                        && relationshipEntry.DataObjectType == typeof (DOType))
+                    {
+                        results.Add(Db.Session.Load<DOType>(relationshipEntry.DataObjectId));
+                    }
+                }
+            }
+
+            return results;
         }
 
         //-- Lookups
@@ -143,42 +211,6 @@ namespace RavenDesk.Core.Data
             db.Session.SaveChanges();
             Id = null;
         }
-    
-    
-    
-        //public void ProcessRelatedObjects()
-        //{
-        //    //Remove any possible duplicate entries
-        //    this.RelatedObjects = this.RelatedObjects.Distinct().ToList();
-
-        //    foreach (var dataObject in this.RelatedObjects)
-        //    {
-        //        //Strip the related objects from the collection to prevent self-refrencing serialization
-        //        dataObject.RelatedObjects = null;
-
-        //        //Make Sure Realted object refrences this in it's related objects collection
-        //        IDataObject relObj = Db.Session.Load<dynamic>(dataObject.Id);
-        //        relObj.RelatedObjects = relObj.RelatedObjects ?? new List<IDataObject>();
-        //        if (relObj.RelatedObjects.Contains(this) != true)
-        //        {
-        //            relObj.RelatedObjects.Add(this);
-        //            relObj.RelatedObjects.FirstOrDefault(x => x.Id == this.Id).RelatedObjects = null;
-        //        }
-        //    }
-
-        //    //if (this.Id != null)
-        //    //{
-        //    //    //Find any Objects that list this as a related object that are not in the related object collection
-        //    //    var rObjects = Db.Session.Query<IDataObject>().Where(x => x.RelatedObjects.Any(y => y.Id == this.Id));
-        //    //    var nonRObjects = rObjects.Where(x => this.RelatedObjects.Any(y => y.Id == x.Id) != true);
-        //    //    foreach (var dataObject in nonRObjects)
-        //    //    {
-        //    //        dataObject.RelatedObjects.Remove(this);
-        //    //    }
-        //    //}
-        //}
     }
-
-
 
 }
