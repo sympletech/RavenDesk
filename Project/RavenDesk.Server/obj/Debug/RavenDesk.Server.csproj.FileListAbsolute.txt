@@ -1,0 +1,5 @@
+C:\Users\Daniel\Projects\RavenDesk\Project\RavenDesk.Server\bin\RavenDesk.Server.dll
+C:\Users\Daniel\Projects\RavenDesk\Project\RavenDesk.Server\bin\RavenDesk.Server.pdb
+C:\Users\Daniel\Projects\RavenDesk\Project\RavenDesk.Server\obj\Debug\RavenDesk.Server.csprojResolveAssemblyReference.cache
+C:\Users\Daniel\Projects\RavenDesk\Project\RavenDesk.Server\obj\Debug\RavenDesk.Server.dll
+C:\Users\Daniel\Projects\RavenDesk\Project\RavenDesk.Server\obj\Debug\RavenDesk.Server.pdb

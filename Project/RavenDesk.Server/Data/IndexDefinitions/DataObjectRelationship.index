@@ -1,0 +1,20 @@
+{
+  "Name": "DataObjectRelationship",
+  "Map": "docs.DataObjectRelationships\r\n\t.Select(entity => new {})",
+  "Maps": [
+    "docs.DataObjectRelationships\r\n\t.Select(entity => new {})"
+  ],
+  "Reduce": null,
+  "TransformResults": null,
+  "IsMapReduce": false,
+  "IsCompiled": false,
+  "IsTemp": false,
+  "Stores": {},
+  "Indexes": {},
+  "SortOptions": {},
+  "Analyzers": {},
+  "Fields": [
+    "__document_id"
+  ],
+  "Type": "Map"
+}
