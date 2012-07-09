@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TeamCalendarModelStoreContainer" CdmEntityContainer="TeamCalendarEntities">
+    <FunctionImportMapping FunctionImportName="ELMAH_GetErrorsXml" FunctionName="TeamCalendarModel.Store.ELMAH_GetErrorsXml" />
+    <FunctionImportMapping FunctionImportName="ELMAH_GetErrorXml" FunctionName="TeamCalendarModel.Store.ELMAH_GetErrorXml" />
+    <FunctionImportMapping FunctionImportName="ELMAH_LogError" FunctionName="TeamCalendarModel.Store.ELMAH_LogError" />
+    <EntitySetMapping Name="companies">
+      <EntityTypeMapping TypeName="TeamCalendarModel.company">
+        <MappingFragment StoreEntitySet="companies">
+          <ScalarProperty Name="software_inventory" ColumnName="software_inventory" />
+          <ScalarProperty Name="notificationEmail" ColumnName="notificationEmail" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="days_off">
+      <EntityTypeMapping TypeName="TeamCalendarModel.days_off">
+        <MappingFragment StoreEntitySet="days_off">
+          <ScalarProperty Name="approved" ColumnName="approved" />
+          <ScalarProperty Name="responseNotes" ColumnName="responseNotes" />
+          <ScalarProperty Name="responseByID" ColumnName="responseByID" />
+          <ScalarProperty Name="responseOn" ColumnName="responseOn" />
+          <ScalarProperty Name="requestedByID" ColumnName="requestedByID" />
+          <ScalarProperty Name="requestedOn" ColumnName="requestedOn" />
+          <ScalarProperty Name="requestTypeId" ColumnName="requestTypeId" />
+          <ScalarProperty Name="hours" ColumnName="hours" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="requestNotes" ColumnName="requestNotes" />
+          <ScalarProperty Name="holidayID" ColumnName="holidayID" />
+          <ScalarProperty Name="agentID" ColumnName="agentID" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ELMAH_Error">
+      <EntityTypeMapping TypeName="TeamCalendarModel.ELMAH_Error">
+        <MappingFragment StoreEntitySet="ELMAH_Error">
+          <ScalarProperty Name="AllXml" ColumnName="AllXml" />
+          <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+          <ScalarProperty Name="TimeUtc" ColumnName="TimeUtc" />
+          <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+          <ScalarProperty Name="User" ColumnName="User" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Host" ColumnName="Host" />
+          <ScalarProperty Name="Application" ColumnName="Application" />
+          <ScalarProperty Name="ErrorId" ColumnName="ErrorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="holidays">
+      <EntityTypeMapping TypeName="TeamCalendarModel.holiday">
+        <MappingFragment StoreEntitySet="holidays">
+          <ScalarProperty Name="observeDate" ColumnName="observeDate" />
+          <ScalarProperty Name="holiday1" ColumnName="holiday" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="request_types">
+      <EntityTypeMapping TypeName="TeamCalendarModel.request_types">
+        <MappingFragment StoreEntitySet="request_types">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="allTeams" ColumnName="allTeams" />
+          <ScalarProperty Name="team_id" ColumnName="team_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="team_details">
+      <EntityTypeMapping TypeName="TeamCalendarModel.team_details">
+        <MappingFragment StoreEntitySet="team_details">
+          <ScalarProperty Name="emailDistro" ColumnName="emailDistro" />
+          <ScalarProperty Name="hrAdminID" ColumnName="hrAdminID" />
+          <ScalarProperty Name="assistantManagerID" ColumnName="assistantManagerID" />
+          <ScalarProperty Name="managerID" ColumnName="managerID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="team_shifts">
+      <EntityTypeMapping TypeName="TeamCalendarModel.team_shifts">
+        <MappingFragment StoreEntitySet="team_shifts">
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="team_id" ColumnName="team_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_account_users">
+      <EntityTypeMapping TypeName="TeamCalendarModel.v_account_users">
+        <MappingFragment StoreEntitySet="v_account_users">
+          <ScalarProperty Name="ShiftEnd" ColumnName="ShiftEnd" />
+          <ScalarProperty Name="ShiftStart" ColumnName="ShiftStart" />
+          <ScalarProperty Name="ShiftName" ColumnName="ShiftName" />
+          <ScalarProperty Name="shift_id" ColumnName="shift_id" />
+          <ScalarProperty Name="team_id" ColumnName="team_id" />
+          <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+          <ScalarProperty Name="admin" ColumnName="admin" />
+          <ScalarProperty Name="lastlogin" ColumnName="lastlogin" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="dayOff2" ColumnName="dayOff2" />
+          <ScalarProperty Name="dayOff1" ColumnName="dayOff1" />
+          <ScalarProperty Name="phoneHome" ColumnName="phoneHome" />
+          <ScalarProperty Name="phoneCell" ColumnName="phoneCell" />
+          <ScalarProperty Name="phoneOffice" ColumnName="phoneOffice" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="position" ColumnName="position" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_days_off">
+      <EntityTypeMapping TypeName="TeamCalendarModel.v_days_off">
+        <MappingFragment StoreEntitySet="v_days_off">
+          <ScalarProperty Name="requestedBy" ColumnName="requestedBy" />
+          <ScalarProperty Name="emailDistro" ColumnName="emailDistro" />
+          <ScalarProperty Name="hrAdminEmail" ColumnName="hrAdminEmail" />
+          <ScalarProperty Name="assistantManagerEmail" ColumnName="assistantManagerEmail" />
+          <ScalarProperty Name="managerEmail" ColumnName="managerEmail" />
+          <ScalarProperty Name="teamName" ColumnName="teamName" />
+          <ScalarProperty Name="dayOff2" ColumnName="dayOff2" />
+          <ScalarProperty Name="dayOff1" ColumnName="dayOff1" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="team_id" ColumnName="team_id" />
+          <ScalarProperty Name="request_type_name" ColumnName="request_type_name" />
+          <ScalarProperty Name="approved" ColumnName="approved" />
+          <ScalarProperty Name="responseNotes" ColumnName="responseNotes" />
+          <ScalarProperty Name="responseByID" ColumnName="responseByID" />
+          <ScalarProperty Name="responseOn" ColumnName="responseOn" />
+          <ScalarProperty Name="requestedByID" ColumnName="requestedByID" />
+          <ScalarProperty Name="requestedOn" ColumnName="requestedOn" />
+          <ScalarProperty Name="requestTypeId" ColumnName="requestTypeId" />
+          <ScalarProperty Name="hours" ColumnName="hours" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="requestNotes" ColumnName="requestNotes" />
+          <ScalarProperty Name="holidayID" ColumnName="holidayID" />
+          <ScalarProperty Name="agentID" ColumnName="agentID" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="v_team_details">
+      <EntityTypeMapping TypeName="TeamCalendarModel.v_team_details">
+        <MappingFragment StoreEntitySet="v_team_details">
+          <ScalarProperty Name="hrAdminName" ColumnName="hrAdminName" />
+          <ScalarProperty Name="assistantManagerName" ColumnName="assistantManagerName" />
+          <ScalarProperty Name="managerName" ColumnName="managerName" />
+          <ScalarProperty Name="emailDistro" ColumnName="emailDistro" />
+          <ScalarProperty Name="hrAdminID" ColumnName="hrAdminID" />
+          <ScalarProperty Name="assistantManagerID" ColumnName="assistantManagerID" />
+          <ScalarProperty Name="managerID" ColumnName="managerID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="account_users">
+      <EntityTypeMapping TypeName="TeamCalendarModel.account_users">
+        <MappingFragment StoreEntitySet="account_users">
+          <ScalarProperty Name="change_password" ColumnName="change_password" />
+          <ScalarProperty Name="admin" ColumnName="admin" />
+          <ScalarProperty Name="lastlogin" ColumnName="lastlogin" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="dayOff2" ColumnName="dayOff2" />
+          <ScalarProperty Name="dayOff1" ColumnName="dayOff1" />
+          <ScalarProperty Name="shift_id" ColumnName="shift_id" />
+          <ScalarProperty Name="team_id" ColumnName="team_id" />
+          <ScalarProperty Name="phoneHome" ColumnName="phoneHome" />
+          <ScalarProperty Name="phoneCell" ColumnName="phoneCell" />
+          <ScalarProperty Name="phoneOffice" ColumnName="phoneOffice" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="position" ColumnName="position" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

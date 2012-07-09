@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{63C1B2BE-3CB8-476C-9D1E-1EB92D880D71}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TeamMgmtCal.Core</RootNamespace>
+    <AssemblyName>TeamMgmtCal.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.1.267\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0-rc\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Outlook, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\RavenDB-Unstable-Build-2017\Client\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Abstractions">
+      <HintPath>..\packages\RavenDB-Unstable-Build-2017\Client\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Debug">
+      <HintPath>..\packages\RavenDB-Unstable-Build-2017\Client\Raven.Client.Debug.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight">
+      <HintPath>..\packages\RavenDB-Unstable-Build-2017\Client\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight.FSharp">
+      <HintPath>..\packages\RavenDB-Unstable-Build-2017\Client\Raven.Client.Lightweight.FSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.MvcIntegration">
+      <HintPath>..\packages\RavenDB-Unstable-Build-2017\Client\Raven.Client.MvcIntegration.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Calendar\CalendarMonth.cs" />
+    <Compile Include="Calendar\CalendarDay.cs" />
+    <Compile Include="Calendar\CalendarWeek.cs" />
+    <Compile Include="Data\Attributres\EmailAttribute.cs" />
+    <Compile Include="Data\Attributres\RequiredValueAttribute.cs" />
+    <Compile Include="Data\Attributres\UpdateOnSaveAttribute.cs" />
+    <Compile Include="Data\DataContext.cs" />
+    <Compile Include="Data\DataObject.cs" />
+    <Compile Include="Data\DataObjectOperationResult.cs" />
+    <Compile Include="Data\IDataContext.cs" />
+    <Compile Include="Data\Mapping\MappedModel.cs" />
+    <Compile Include="Data\Mapping\MapToAttribute.cs" />
+    <Compile Include="Data\Models\AccountUser.cs" />
+    <Compile Include="Data\Models\CalendarEntry.cs" />
+    <Compile Include="Data\Models\EMailLogEntry.cs" />
+    <Compile Include="Data\Models\Holiday.cs" />
+    <Compile Include="Data\Models\RequestType.cs" />
+    <Compile Include="Data\Models\TeamDetail.cs" />
+    <Compile Include="Data\Models\TeamShift.cs" />
+    <Compile Include="Email\Emailer.cs" />
+    <Compile Include="Email\EmailWorker.cs" />
+    <Compile Include="Email\Templates\EmailTemplates.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmailTemplates.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\encryptionHelpers.cs" />
+    <Compile Include="Helpers\IEmailer.cs" />
+    <Compile Include="Helpers\regExHelpers.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Security\SecurityWorker.cs" />
+    <Compile Include="Security\UserRole.cs" />
+    <Compile Include="Shared\OperationResult.cs" />
+    <Compile Include="TeamManagement\TeamSummayEntry.cs" />
+    <Compile Include="TeamManagement\WeeklyReportEntry.cs" />
+    <Compile Include="UserManagement\AttendanceHistoryEntry.cs" />
+    <Compile Include="UserManagement\AttendanceHourSummary.cs" />
+    <Compile Include="TeamManagement\TeamWorker.cs" />
+    <Compile Include="UserManagement\UserWorker.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Email\Templates\EmailTemplates.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmailTemplates.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Email\Templates\DailyAttendanceReportTemplate.html" />
+    <Content Include="Email\Templates\ForgotPasswordTemplate.html" />
+    <Content Include="Email\Templates\Master_PlainText.txt" />
+    <Content Include="Email\Templates\Master.html" />
+    <Content Include="Email\Templates\NewRequestTemplate.html" />
+    <Content Include="Email\Templates\NewUser.html" />
+    <Content Include="Email\Templates\RequestResponseTemplate.html" />
+    <Content Include="Email\Templates\SickNotificationTemplate.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Summary\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
