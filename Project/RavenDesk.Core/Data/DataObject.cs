@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Raven.Imports.Newtonsoft.Json;
+using RavenDesk.Core.Data.Attributes;
 
 namespace RavenDesk.Core.Data
 {
@@ -188,13 +189,17 @@ namespace RavenDesk.Core.Data
         public DataObjectOperationResult Save()
         {
             var result = new DataObjectOperationResult();
-
             try
             {
-                Db.Session.Store(this);
-                Db.Session.SaveChanges();
+                Validator.ValidateDataObject(this, ref result);
+                if(result.Success == true)
+                {
+                    Db.Session.Store(this);
+                    Db.Session.SaveChanges();
 
-                result.Message = "Database Update Completed Successfully";
+                    result.Message = "Database Update Completed Successfully";                    
+                }
+
             }
             catch (Exception ex)
             {

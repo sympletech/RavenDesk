@@ -90,7 +90,6 @@ namespace RavenDesk.Core.Data
             CreateIndex<Author>("Author");
             CreateIndex<Book>("Book");
             CreateIndex<Character>("Character");
-            CreateIndex<StoryLine>("StoryLine");
 
             this._documentStore.DatabaseCommands.DeleteByIndex("DataObjectRelationship", new IndexQuery());
             this._documentStore.DatabaseCommands.DeleteByIndex("Author", new IndexQuery());

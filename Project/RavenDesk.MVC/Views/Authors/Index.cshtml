@@ -1,0 +1,10 @@
+﻿@model RavenDesk.MVC.Models.Authors.AuthorListViewModel
+
+@foreach(var author in Model.Authors)
+{
+    <div>@author.LastName, @author.FirstName</div>
+}
+
+<script type="text/javascript">
+    Wait(true);
+</script>

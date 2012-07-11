@@ -57,6 +57,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Attributes\EmailAttribute.cs" />
+    <Compile Include="Data\Attributes\RequiredValueAttribute.cs" />
+    <Compile Include="Data\Attributes\Validator.cs" />
     <Compile Include="Data\DataObjectRelationship.cs" />
     <Compile Include="Data\IDataContext.cs" />
     <Compile Include="Data\IDataObject.cs" />
@@ -66,8 +69,10 @@
     <Compile Include="Data\DataContext.cs" />
     <Compile Include="Data\DataObject.cs" />
     <Compile Include="Data\DataObjectOperationResult.cs" />
+    <Compile Include="Models\Interfaces\IAuthor.cs" />
+    <Compile Include="Models\Interfaces\IBook.cs" />
+    <Compile Include="Models\Interfaces\ICharacter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\StoryLine.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

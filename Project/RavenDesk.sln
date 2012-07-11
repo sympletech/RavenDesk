@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RavenDesk.Server", "RavenDesk.Server\RavenDesk.Server.csproj", "{8CC1CB85-9BF0-4225-9333-A27F6E1F8166}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RavenDesk.MVC", "RavenDesk.MVC\RavenDesk.MVC.csproj", "{54466804-9C09-494F-B9D0-E3E138D48A64}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RavenDesk.Console", "RavenDesk.Console\RavenDesk.Console.csproj", "{3C71E16E-9EC4-4898-959E-418BA895E58F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RavenDesk.Core", "RavenDesk.Core\RavenDesk.Core.csproj", "{DE2B48F5-56EA-4C4E-9C1B-54999FDFD3B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RavenDesk.MVC", "RavenDesk.MVC\RavenDesk.MVC.csproj", "{49B23A40-206A-4FAA-864C-525D52A1959B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,10 @@ Global
 		{3C71E16E-9EC4-4898-959E-418BA895E58F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C71E16E-9EC4-4898-959E-418BA895E58F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C71E16E-9EC4-4898-959E-418BA895E58F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{54466804-9C09-494F-B9D0-E3E138D48A64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{54466804-9C09-494F-B9D0-E3E138D48A64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{54466804-9C09-494F-B9D0-E3E138D48A64}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{54466804-9C09-494F-B9D0-E3E138D48A64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49B23A40-206A-4FAA-864C-525D52A1959B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49B23A40-206A-4FAA-864C-525D52A1959B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49B23A40-206A-4FAA-864C-525D52A1959B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49B23A40-206A-4FAA-864C-525D52A1959B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8CC1CB85-9BF0-4225-9333-A27F6E1F8166}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8CC1CB85-9BF0-4225-9333-A27F6E1F8166}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CC1CB85-9BF0-4225-9333-A27F6E1F8166}.Release|Any CPU.ActiveCfg = Release|Any CPU
