@@ -1,0 +1,5 @@
+﻿@model System.Boolean?
+@{
+    bool _value = Model ?? false;
+}
+@Html.CheckBox("", _value)

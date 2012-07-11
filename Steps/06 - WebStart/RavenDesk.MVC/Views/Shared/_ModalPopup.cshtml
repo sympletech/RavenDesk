@@ -1,0 +1,43 @@
+@{Layout = null;}
+@{
+    HttpContext.Current.Response.Cache.SetExpires(DateTime.UtcNow.AddDays(-1));
+    HttpContext.Current.Response.Cache.SetValidUntilExpires(false);
+    HttpContext.Current.Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
+    HttpContext.Current.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+    HttpContext.Current.Response.Cache.SetNoStore();
+}
+<div id="modal_wrapper">
+<script type="text/javascript">
+    $(function () {
+        var popup = $("#PopUp").dialog({
+            modal: true,
+            width: 900,
+            close: function (event, ui) {
+                ClosePopup();
+            }
+        });
+        popup.dialog("option", "title", $("#modal-header").html());
+        BindUI();
+    });
+    
+    function ClosePopup() {
+        $("#PopUp").dialog("option", "hide", { effect: 'clip', direction: "down" })
+            .html("")
+            .dialog("destroy");
+    }
+</script>
+
+ @RenderSection("Scripts",false)
+
+<div>
+    <div id="modal-header" style="display: none;">
+            @RenderSection("Header", true)
+    </div>
+    <div class="modal-body">
+        @RenderSection("Body",true)
+    </div>
+    <div class="ui-dialog-footer">
+        @RenderSection("Footer", false)
+    </div>
+</div>
+</div>

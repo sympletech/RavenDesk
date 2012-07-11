@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RavenDesk</title>
+
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap.min.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap-responsive.min.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/themes/base/minified/jquery-ui.min.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/master.css")" />
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.7.2.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui-1.8.20.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/master.js")"></script>
+
+</head>
+    <body>
+        <div class="loader">
+            <img src="#"/>
+        </div>
+        <div id="main-window">
+            <nav class="navbar">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <a class="brand" href="#">RavenDesk</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="row-fluid">
+                <div class="span3">
+                    @Html.Partial("_SideNav")
+                </div>
+                <div class="span9">
+                    <div id="main-content-wrapper" class="well">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <img src="@Url.Content("~/Content/images/ravendbinside.jpg")"/>
+            </footer>        
+        </div>
+        <div id="PopUp"></div>
+    </body>
+</html>

@@ -1,0 +1,13 @@
+﻿@model System.DateTime? 
+@{
+    string DisplayValue = "";
+    if(Model.HasValue){
+        if(Model.Value.TimeOfDay == new TimeSpan(0)){
+            DisplayValue = Model.Value.ToString("MM/dd/yyyy");
+        }else{
+            DisplayValue = Model.Value.ToString("MM/dd/yyyy hh:mm tt");
+        }
+    }
+}
+
+@Html.TextBox("", DisplayValue, new { @class = "date-picker", style = "width:150px" })
