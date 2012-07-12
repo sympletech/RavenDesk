@@ -1,0 +1,26 @@
+﻿@using RavenDesk.MVC.Helpers;
+@using RavenDesk.Core.Models.Interfaces;
+
+@model PageableSearchResults<IAuthor>
+@{Layout = null;}
+
+<table class="datagrid">
+    <tr class="header_row">
+        <td>Last Name</td>
+        <td>First Name</td>
+        <td>E-Mail Address</td>
+        <td>Home Town</td>
+        <td>Still Alive</td>
+    </tr>
+    @foreach (var author in Model.Items)
+    {
+        <tr class="data-row hoverable">
+            <td>@author.LastName</td>
+            <td>@author.FirstName</td>
+            <td>@author.EmailAddress</td>
+            <td>@author.HomeTown</td>
+            <td>@author.Alive</td>
+        </tr>
+    }
+</table>
+@Model.GeneratePager("ReloadGrid")

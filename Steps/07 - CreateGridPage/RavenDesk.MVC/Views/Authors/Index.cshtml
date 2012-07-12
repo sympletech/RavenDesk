@@ -1,0 +1,33 @@
+﻿@using RavenDesk.MVC.Helpers;
+@model RavenDesk.MVC.Models.Authors.AuthorListViewModel
+
+<script type="text/javascript">
+    $(function () {
+        $("#frmSearch").ajaxform(function (data) {
+            $(".datagrid-wrapper").html(data);
+        });
+    });
+
+    function ReLoadGrid(page) {
+        $("#PageNum").val(page);
+        $("#frmSearch").submit();
+    }
+</script>
+
+<div class="datagrid-wrapper">
+    @Html.Partial("Grid", Model.Authors)
+</div>
+
+<form id="frmSearch" class="well form-horizontal" style="background: #fff" 
+      action="@Url.Content("~/Authors/Search")" method="POST">
+    
+    @Html.HiddenFor(x=>x.PageNum)
+
+    @Html.EditDataField("Search By Last Name", Html.TextBoxFor(x => x.SearchTerm))
+    @Html.EditDataField("Only Show Living", Html.EditorFor(x => x.OnlyShowLiving))
+    
+    <div style="text-align: center">
+        <input type="submit" value="Search" class="btn btn-large btn-primary" />
+    </div>
+
+</form>
