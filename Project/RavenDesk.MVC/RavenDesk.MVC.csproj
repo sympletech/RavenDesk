@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.1.267\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -118,6 +121,7 @@
     <Compile Include="Helpers\ListToSelectList.cs" />
     <Compile Include="Helpers\PageableSearchResults.cs" />
     <Compile Include="Models\Authors\AuthorListViewModel.cs" />
+    <Compile Include="Models\Authors\AuthorWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -231,6 +235,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\Authors\Index.cshtml" />
+    <Content Include="Views\Authors\Grid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

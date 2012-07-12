@@ -1,7 +1,17 @@
 ﻿@{Layout = null;}
 
+<script type="text/javascript">
+    $(function () {
+        $(".left-nav-link").click(function() {
+            Wait(true);
+            var controller = $(this).attr("data-RavenDesk-link");
+            window.location.href = '@Url.Content("~/")' + controller;
+        });
+    });
+</script>
+
 <div class="left-nav">
-    <div class="well left-nav-link" data-link="Authors">
+    <div class="well left-nav-link" data-RavenDesk-link="Authors">
         <img src="@Url.Content("~/Content/images/authors_icon.png")"  />
         <div class="link-title">Authors</div>
     </div>

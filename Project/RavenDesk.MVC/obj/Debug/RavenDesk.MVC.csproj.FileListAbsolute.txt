@@ -38,3 +38,5 @@ C:\Users\Daniel\Projects\RavenDesk\Project\RavenDesk.MVC\bin\Raven.Client.Lightw
 C:\Users\Daniel\Projects\RavenDesk\Project\RavenDesk.MVC\bin\Raven.Abstractions.pdb
 C:\Users\Daniel\Projects\RavenDesk\Project\RavenDesk.MVC\bin\Raven.Abstractions.xml
 C:\Users\Daniel\Projects\RavenDesk\Project\RavenDesk.MVC\bin\NLog.xml
+C:\Users\Daniel\Projects\RavenDesk\Project\RavenDesk.MVC\bin\AutoMapper.dll
+C:\Users\Daniel\Projects\RavenDesk\Project\RavenDesk.MVC\bin\AutoMapper.xml

@@ -13,6 +13,10 @@
     background: #000;
     top: 0px;
     left: 0px;
+    opacity: 0.75;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=75)";
+    filter: alpha(opacity=75);
+    zoom: 1;
 }
 
     .loader img {
@@ -55,6 +59,10 @@ footer {
 
 /* -- DATAGRID -- */
 
+.datagrid-wrapper {
+    height: 310px;
+}
+
 .datagrid {
     clear: both;
     border: 1px solid #c9c9c9;
@@ -80,6 +88,7 @@ footer {
     }
 
     .datagrid .data-row {
+        background: #fff;
     }
 
         .datagrid .data-row:nth-child(even) {

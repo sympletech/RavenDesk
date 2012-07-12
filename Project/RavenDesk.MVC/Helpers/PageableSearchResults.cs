@@ -117,27 +117,33 @@ namespace RavenDesk.MVC.Helpers
         /// </summary>
         /// <param name="jsPagerFunction">The name of the JS Function to call to page -- passes the new page number to it</param>
         /// <param name="additionalParamsCSV">Additional Parameters to send to javascript function</param>
-        public HtmlString GeneratePager(string jsPagerFunction, string additionalParamsCSV)
+        public HtmlString GeneratePager(string jsPagerFunction, params string[] additionalParams)
         {
-            if (additionalParamsCSV != "")
+            var sbAdditionalParamsCsv = new StringBuilder();
+            foreach (var additionalParam in additionalParams)
             {
-                additionalParamsCSV = "," + additionalParamsCSV;
+                sbAdditionalParamsCsv.Append("," + additionalParam);
             }
 
-            StringBuilder sbPager = new StringBuilder();
+            this.CurPage = this.CurPage ?? 1;
+            this.CurPage = this.CurPage < 1 ? 1 : this.CurPage;
+
+            var sbPager = new StringBuilder();
             sbPager.Append("<div class='pager'>");
             sbPager.Append("<input type='hidden' id='cur_page' value='" + CurPage + "' />");
 
             if (this.CurPage > 1)
             {
-                sbPager.AppendFormat("<div class='previous' onclick='{0}({1}{2})'></div>", jsPagerFunction, this.CurPage - 1, additionalParamsCSV);
+                sbPager.AppendFormat("<div class='previous' onclick='{0}({1}{2})'></div>", 
+                    jsPagerFunction, this.CurPage - 1, sbAdditionalParamsCsv.ToString());
             }
 
             sbPager.AppendFormat("Page {0} of {1}", this.CurPage, this.TotalPages);
 
             if (this.CurPage < this.TotalPages)
             {
-                sbPager.AppendFormat("<div class='next' onclick='{0}({1}{2})'></div>", jsPagerFunction, this.CurPage + 1, additionalParamsCSV);
+                sbPager.AppendFormat("<div class='next' onclick='{0}({1}{2})'></div>", 
+                    jsPagerFunction, this.CurPage + 1, sbAdditionalParamsCsv.ToString());
             }
 
             sbPager.Append("</div>");

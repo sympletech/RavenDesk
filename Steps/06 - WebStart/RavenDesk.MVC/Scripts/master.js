@@ -14,11 +14,11 @@ function BindUI() {
 
 function Wait(show) {
     if (show) {
-        $("#MasterLoader")
+        $(".loader")
             .height($(document).height())
             .fadeIn(25);
     } else {
-        $("#MasterLoader").hide();
+        $(".loader").hide();
     }
 }
 

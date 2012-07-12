@@ -182,8 +182,7 @@ namespace RavenDesk.Core.Data
         {
             return db.Session.Query<T>().Where(predicate);
         }
-
-
+        
         //-- CRUD
 
         public DataObjectOperationResult Save()

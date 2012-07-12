@@ -59,6 +59,10 @@ footer {
 
 /* -- DATAGRID -- */
 
+.datagrid-wrapper {
+    height: 310px;
+}
+
 .datagrid {
     clear: both;
     border: 1px solid #c9c9c9;
@@ -84,6 +88,7 @@ footer {
     }
 
     .datagrid .data-row {
+        background: #fff;
     }
 
         .datagrid .data-row:nth-child(even) {
