@@ -73,33 +73,36 @@ namespace RavenDesk.Core.Data
                 Db.Session.SaveChanges();
             }
         }
-        
+
+        private List<IDataObject> _relatedObjects;
         [JsonIgnore]
         public List<IDataObject> RelatedObjects
         {
             get
             {
-                //Get The Relationship Entries
-                var relationships = Db.Session.Query<DataObjectRelationship>()
-                    .Where(x => x.DataObjects
-                        .Any(y => y.DataObjectId == this.Id));
-
-                //Read Through each relationship entry and add to results 
-                //(unless it's this object or already exists in the collection)
-                var results = new List<IDataObject>();
-                foreach (var relationship in relationships)
+                if(_relatedObjects == null)
                 {
-                    foreach (var relationshipEntry in relationship.DataObjects)
-                    {
-                        if ((results.Any(x =>x.Id == relationshipEntry.DataObjectId) != true)
-                            && this.Id != relationshipEntry.DataObjectId)
-                        {
-                            results.Add(Db.Session.Load<dynamic>(relationshipEntry.DataObjectId));
-                        }                        
-                    }
-                }
+                    //Get The Relationship Entries
+                    var relationships = Db.Session.Query<DataObjectRelationship>()
+                        .Where(x => x.DataObjects
+                            .Any(y => y.DataObjectId == this.Id));
 
-                return results;
+                    //Read Through each relationship entry and add to results 
+                    //(unless it's this object or already exists in the collection)
+                    _relatedObjects = new List<IDataObject>();
+                    foreach (var relationship in relationships)
+                    {
+                        foreach (var relationshipEntry in relationship.DataObjects)
+                        {
+                            if ((_relatedObjects.Any(x => x.Id == relationshipEntry.DataObjectId) != true)
+                                && this.Id != relationshipEntry.DataObjectId)
+                            {
+                                _relatedObjects.Add(Db.Session.Load<dynamic>(relationshipEntry.DataObjectId));
+                            }
+                        }
+                    }                    
+                }
+                return _relatedObjects;
             }
         }
 

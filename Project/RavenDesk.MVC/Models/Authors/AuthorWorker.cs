@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using AutoMapper;
 using RavenDesk.Core.Data;
 using RavenDesk.Core.Models;
 using RavenDesk.Core.Models.Interfaces;
@@ -21,18 +22,18 @@ namespace RavenDesk.MVC.Models.Authors
         {
             return GenerateListView(new AuthorListViewModel());
         }
-        public AuthorListViewModel GenerateListView(AuthorListViewModel Params)
+        public AuthorListViewModel GenerateListView(AuthorListViewModel baseObject)
         {
-            var vModel = Params;
+            var vModel = baseObject;
             IQueryable<Author> items; 
-                if(string.IsNullOrEmpty(Params.SearchTerm))
+                if(string.IsNullOrEmpty(baseObject.SearchTerm))
                 {
                     items = Author.GetAll(Db);
                 }else
                 {
-                    items = Author.Query(Db, x => x.LastName == Params.SearchTerm);
+                    items = Author.Query(Db, x => x.LastName == baseObject.SearchTerm);
                 }
-                if(Params.OnlyShowLiving == true)
+                if(baseObject.OnlyShowLiving == true)
                 {
                     items = items.Where(x => x.Alive == true);
                 }
@@ -42,10 +43,55 @@ namespace RavenDesk.MVC.Models.Authors
             vModel.Authors = new PageableSearchResults<IAuthor>
                                  {
                                      Items = items,
-                                    CurPage = Params.PageNum,
+                                    CurPage = baseObject.PageNum,
                                     RecordsPerPage = 10
                                  };
             return vModel;
         }
+    
+        public AuthorFormModel GenerateForm()
+        {
+            var vModel = new AuthorFormModel();
+                             //{
+                             //    Books = new List<IBook>(),
+                             //    Characters = new List<ICharacter>()
+                             //};
+            //BuildFormDdLs(vModel);
+
+            return vModel;
+        }
+        public AuthorFormModel GenerateForm(string id)
+        {
+            var baseObject = Author.Get(Db, id);
+            Mapper.CreateMap<Author, AuthorFormModel>();
+            //    .AfterMap((author, formModel) =>
+            //    {
+            //        formModel.Books = author.QueryRelatedObjects<Book>();
+            //        formModel.Characters = author.QueryRelatedObjects<Character>();
+            //    });
+            var vModel = Mapper.Map<Author, AuthorFormModel>(baseObject);
+            
+            //BuildFormDdLs(vModel);
+
+            return vModel;
+        }
+        //public void BuildFormDdLs(AuthorFormModel vModel)
+        //{
+        //    vModel.BookAssoiationOptions = ListToSelectList.ConvertToSelectList(
+        //        Book.GetAll(Db), "Id", "Title", true, "Select Book To Add");
+
+        //    vModel.CharacterAssoiationOptions = ListToSelectList.ConvertToSelectList(
+        //        Character.GetAll(Db), "Id", "Name", true, "Select Character To Add");
+        //}
+    
+        public DataObjectOperationResult CommitChanges(AuthorFormModel postedData)
+        {
+            Mapper.CreateMap<AuthorFormModel, Author>();
+            var author = new Author(Db);
+            Mapper.Map<AuthorFormModel, Author>(postedData, author);
+            return author.Save();
+        }
+    
+
     }
 }

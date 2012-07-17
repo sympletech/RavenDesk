@@ -1,0 +1,47 @@
+﻿@using RavenDesk.MVC.Helpers;
+@model RavenDesk.MVC.Models.Authors.AuthorFormModel
+
+@{Layout = "~/Views/Shared/_ModalPopup.cshtml";}
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            $("#frmAuthor").ajaxform(function (data) {
+                $("#modal_wrapper").html(data);
+            });
+
+            $("#BirthDate").datepicker();
+        });
+        
+        function SubmitAuthorForm() {
+            $("#frmAuthor").submit();
+        }
+    </script>
+}
+
+@section Header
+{
+    @Model.PopupTitle
+}
+
+@section Body
+{
+    @Html.ValidationSummary()
+
+    <form id="frmAuthor" class="form-horizontal" action="@Url.Content("~/Authors/AddUpatde/")">
+        @Html.HiddenFor(x=>x.Id)
+        
+        @Html.EditDataField("Last Name", Html.TextBoxFor(x=>x.LastName), Html.ValidationMessageFor(x=>x.LastName))
+        @Html.EditDataField("First Name", Html.TextBoxFor(x=>x.FirstName), Html.ValidationMessageFor(x=>x.FirstName))
+        @Html.EditDataField("E-Mail", Html.TextBoxFor(x=>x.EmailAddress), Html.ValidationMessageFor(x=>x.EmailAddress))
+        @Html.EditDataField("Home Town", Html.TextBoxFor(x=>x.HomeTown))
+        @Html.EditDataField("Birth Date", Html.EditorFor(x=>x.BirthDate))
+        @Html.EditDataField("Alive", Html.CheckBoxFor(x=>x.Alive))
+    </form>
+}
+@section Footer
+{
+    <input type="button" value="Submit" class="btn btn-primary" onclick="SubmitAuthorForm()"/>
+    <input type="button" value="Cancel" class="btn btn-danger" onclick="ClosePopup()"/>
+}

@@ -16,13 +16,13 @@ namespace RavenDesk.Console
             //crud.NoCascadingUpdates();
             //crud.DeleteSomething();
 
-            //var dContext = new Step4_DataContext();
+            var dContext = new Step4_DataContext();
             //dContext.InitDatabase();
             //dContext.CreateSomeThings();
             //dContext.CreateSomeRelationships();
 
-            var valTest = new Step5_Validation();
-            valTest.RequiredFieldTest();
+            //var valTest = new Step5_Validation();
+            //valTest.RequiredFieldTest();
         }
     }
 }

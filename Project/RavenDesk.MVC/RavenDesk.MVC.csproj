@@ -120,6 +120,7 @@
     <Compile Include="Helpers\htmlHelpers.cs" />
     <Compile Include="Helpers\ListToSelectList.cs" />
     <Compile Include="Helpers\PageableSearchResults.cs" />
+    <Compile Include="Models\Authors\AuthorFormModel.cs" />
     <Compile Include="Models\Authors\AuthorListViewModel.cs" />
     <Compile Include="Models\Authors\AuthorWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -236,6 +237,8 @@
     </Content>
     <Content Include="Views\Authors\Index.cshtml" />
     <Content Include="Views\Authors\Grid.cshtml" />
+    <Content Include="Views\Authors\Form.cshtml" />
+    <Content Include="Views\Authors\InputSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

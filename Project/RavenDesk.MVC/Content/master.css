@@ -60,7 +60,7 @@ footer {
 /* -- DATAGRID -- */
 
 .datagrid-wrapper {
-    height: 310px;
+    height: 290px;
 }
 
 .datagrid {
@@ -120,7 +120,6 @@ footer {
     text-align: right;
     padding-right: 10px;
     height: 25px;
-    background: #FFF;
 }
 
     .pager .previous {

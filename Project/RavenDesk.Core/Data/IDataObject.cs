@@ -11,7 +11,9 @@ namespace RavenDesk.Core.Data
 
         void AddRelationship(IDataObject relatedDataObject);
         void RemoveRelationship(IDataObject unRelatedDataObject);
+        
         List<IDataObject> RelatedObjects { get; }
+        List<DOType> QueryRelatedObjects<DOType>() where DOType : IDataObject;
 
         DataObjectOperationResult Save();
     }
