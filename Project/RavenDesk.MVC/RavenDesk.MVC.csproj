@@ -43,6 +43,10 @@
       <HintPath>..\packages\AutoMapper.2.1.267\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Raven.Client.Lightweight, Version=1.2.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RavenDB-Unstable-Build-2017\Client\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -112,6 +116,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AuthorsController.cs" />
+    <Compile Include="Controllers\BooksController.cs" />
+    <Compile Include="Controllers\CharactersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\_BaseController.cs" />
     <Compile Include="Global.asax.cs">
@@ -123,6 +129,12 @@
     <Compile Include="Models\Authors\AuthorFormModel.cs" />
     <Compile Include="Models\Authors\AuthorListViewModel.cs" />
     <Compile Include="Models\Authors\AuthorWorker.cs" />
+    <Compile Include="Models\Books\BookFormModel.cs" />
+    <Compile Include="Models\Books\BookListViewModel.cs" />
+    <Compile Include="Models\Books\BookWorker.cs" />
+    <Compile Include="Models\Characters\CharacterFormModel.cs" />
+    <Compile Include="Models\Characters\CharacterListViewModel.cs" />
+    <Compile Include="Models\Characters\CharacterWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -239,11 +251,20 @@
     <Content Include="Views\Authors\Grid.cshtml" />
     <Content Include="Views\Authors\Form.cshtml" />
     <Content Include="Views\Authors\InputSuccess.cshtml" />
+    <Content Include="Views\Authors\RelatedObjects.cshtml" />
+    <Content Include="Views\Books\Form.cshtml" />
+    <Content Include="Views\Books\Grid.cshtml" />
+    <Content Include="Views\Books\Index.cshtml" />
+    <Content Include="Views\Books\InputSuccess.cshtml" />
+    <Content Include="Views\Books\RelatedObjects.cshtml" />
+    <Content Include="Views\Characters\Form.cshtml" />
+    <Content Include="Views\Characters\Grid.cshtml" />
+    <Content Include="Views\Characters\Index.cshtml" />
+    <Content Include="Views\Characters\InputSuccess.cshtml" />
+    <Content Include="Views\Characters\RelatedObjects.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Books\" />
-    <Folder Include="Models\Characters\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

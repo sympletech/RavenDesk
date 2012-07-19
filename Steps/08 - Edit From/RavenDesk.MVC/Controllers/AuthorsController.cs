@@ -31,9 +31,9 @@ namespace RavenDesk.MVC.Controllers
             return View("Grid", vModel.Authors);
         }
 
-        public ActionResult Edit(string id)
+        public ActionResult Edit(string aId)
         {
-            var vModel = AWorker.GenerateForm(id);
+            var vModel = AWorker.GenerateForm(aId);
             vModel.PopupTitle = "Edit Author";
             return View("Form", vModel);
         }
@@ -56,7 +56,7 @@ namespace RavenDesk.MVC.Controllers
 
             PostedData.PopupTitle = "Edit Author - ERROR";
             results.PassErrorsToMvcModelState(ModelState);
-            return View(PostedData);
+            return View("Form", PostedData);
         }
 
 

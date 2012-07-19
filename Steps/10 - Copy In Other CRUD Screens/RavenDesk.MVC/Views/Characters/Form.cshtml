@@ -1,0 +1,56 @@
+﻿@using RavenDesk.MVC.Helpers;
+@model RavenDesk.MVC.Models.Characters.CharacterFormModel
+@{Layout = "~/Views/Shared/_ModalPopup.cshtml";}
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            $("#frmCharacter").ajaxform(function (data) {
+                $("#modal_wrapper").html(data);
+            });
+
+            $("#remove-link").ajaxlink("post", function () {
+                $("#frmSearch").submit();
+                ClosePopup();
+            });
+        });
+
+        function SubmitCharacterForm() {
+            $("#frmCharacter").submit();
+        }
+    </script>
+}
+@section Header
+{
+    @Model.PopupTitle
+}
+@section Body
+{
+    @Html.ValidationSummary()
+    <div class="row-fluid">
+        <div class="span6">
+            <form id="frmCharacter" class="form-horizontal" action="@Url.Content("~/Characters/AddUpatde/")">
+            @Html.HiddenFor(x => x.Id)
+            @Html.EditDataField("Name", Html.TextBoxFor(x => x.Name), Html.ValidationMessageFor(x => x.Name))
+            @Html.EditDataField("Catch Phrase", Html.TextBoxFor(x => x.CatchPhrase), Html.ValidationMessageFor(x => x.CatchPhrase))
+            @Html.EditDataField("Sex", Html.DropDownListFor(x=>x.Sex, Model.SexOptions))
+            @Html.EditDataField("Description", Html.TextAreaFor(x => x.Description))
+            </form>
+        </div>
+        @if (Model.Id != null)
+        {
+            <div style="text-align: right; padding-bottom: 5px;">
+                <a id="remove-link" href="@Url.Content("~/Characters/Remove/?id=" + Model.Id)">[Delete]</a>
+            </div>
+            <div class="span6" id="related-objects-wrapper">
+                @Html.Partial("RelatedObjects")
+            </div>
+        }
+    </div>
+
+}
+@section Footer
+{
+    <input type="button" value="Submit" class="btn btn-primary" onclick="SubmitCharacterForm()" />
+    <input type="button" value="Cancel" class="btn btn-danger" onclick="ClosePopup()" />
+}

@@ -1,0 +1,34 @@
+﻿@using RavenDesk.MVC.Helpers;
+@using RavenDesk.Core.Models.Interfaces;
+
+@model PageableSearchResults<ICharacter>
+@{Layout = null;}
+
+<script type="text/javascript">
+    $(function() {
+        //View Detail Popup
+        $("#character-grid .data-row").click(function () {
+            Wait(true);
+            var id = $(this).attr("data-RavenDesk-id");
+            $.get('@Url.Content("~/Characters/Edit/")', { cId: id }, function (data) {
+                $("#PopUp").html(data);
+                Wait(false);
+            });
+        });
+    });
+</script>
+
+<table id="character-grid" class="datagrid">
+    <tr class="header_row">
+        <td>Name</td>
+        <td>Catch Phrase</td>
+    </tr>
+    @foreach (var character in Model.Items)
+    {
+        <tr class="data-row hoverable" data-RavenDesk-id="@character.Id">
+            <td>@character.Name</td>
+            <td>@character.CatchPhrase</td>
+        </tr>
+    }
+</table>
+@Model.GeneratePager("ReloadGrid")

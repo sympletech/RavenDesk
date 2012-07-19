@@ -19,11 +19,7 @@ namespace RavenDesk.MVC.Models.Authors
         public DateTime BirthDate { get; set; }
         public bool Alive { get; set; }
         
-        public List<SelectListItem> BookAssoiationOptions { get; set; }
-        public IEnumerable<IBook> Books { get; set; }
 
-        public List<SelectListItem> CharacterAssoiationOptions { get; set; }
-        public IEnumerable<ICharacter> Characters { get; set; }
 
         public string PopupTitle { get; set; }
     }

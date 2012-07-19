@@ -212,11 +212,11 @@ namespace RavenDesk.Core.Data
             return result;
         }
 
-        public void Delete(IDataContext db)
+        public void Delete()
         {
-            db.Session.Delete(this);
-            db.Session.SaveChanges();
-            Id = null;
+            Db.Session.Delete(this);
+            Db.Session.SaveChanges();
+            this.Id = null;
         }
     }
 

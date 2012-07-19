@@ -21,18 +21,18 @@ namespace RavenDesk.MVC.Models.Authors
         {
             return GenerateListView(new AuthorListViewModel());
         }
-        public AuthorListViewModel GenerateListView(AuthorListViewModel Params)
+        public AuthorListViewModel GenerateListView(AuthorListViewModel baseObject)
         {
-            var vModel = Params;
+            var vModel = baseObject;
             IQueryable<Author> items; 
-                if(string.IsNullOrEmpty(Params.SearchTerm))
+                if(string.IsNullOrEmpty(baseObject.SearchTerm))
                 {
                     items = Author.GetAll(Db);
                 }else
                 {
-                    items = Author.Query(Db, x => x.LastName == Params.SearchTerm);
+                    items = Author.Query(Db, x => x.LastName == baseObject.SearchTerm);
                 }
-                if(Params.OnlyShowLiving == true)
+                if(baseObject.OnlyShowLiving == true)
                 {
                     items = items.Where(x => x.Alive == true);
                 }
@@ -42,7 +42,7 @@ namespace RavenDesk.MVC.Models.Authors
             vModel.Authors = new PageableSearchResults<IAuthor>
                                  {
                                      Items = items,
-                                    CurPage = Params.PageNum,
+                                    CurPage = baseObject.PageNum,
                                     RecordsPerPage = 10
                                  };
             return vModel;

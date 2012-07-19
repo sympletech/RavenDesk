@@ -66,7 +66,7 @@ namespace RavenDesk.MVC.Helpers
             }
             if (this.RecordsPerPage == null)
             {
-                this.RecordsPerPage = 15;
+                this.RecordsPerPage = 10;
             }
 
             this.Records = this._completeDataSet.Count();

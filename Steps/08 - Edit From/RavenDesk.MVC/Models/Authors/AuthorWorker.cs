@@ -51,37 +51,18 @@ namespace RavenDesk.MVC.Models.Authors
     
         public AuthorFormModel GenerateForm()
         {
-            var vModel = new AuthorFormModel
-                             {
-                                 Books = new List<IBook>(),
-                                 Characters = new List<ICharacter>()
-                             };
-            BuildFormDDLs(vModel);
+            var vModel = new AuthorFormModel();
+
 
             return vModel;
         }
         public AuthorFormModel GenerateForm(string id)
         {
             var baseObject = Author.Get(Db, id);
-            Mapper.CreateMap<Author, AuthorFormModel>()
-                .AfterMap((author, formModel) =>
-                {
-                    formModel.Books = author.QueryRelatedObjects<Book>();
-                    formModel.Characters = author.QueryRelatedObjects<Character>();
-                });
+            Mapper.CreateMap<Author, AuthorFormModel>();
             var vModel = Mapper.Map<Author, AuthorFormModel>(baseObject);
             
-            BuildFormDDLs(vModel);
-
             return vModel;
-        }
-        public void BuildFormDDLs(AuthorFormModel vModel)
-        {
-            vModel.BookAssoiationOptions = ListToSelectList.ConvertToSelectList(
-                Book.GetAll(Db), "Id", "Title", true, "Select Book To Add");
-
-            vModel.CharacterAssoiationOptions = ListToSelectList.ConvertToSelectList(
-                Character.GetAll(Db), "Id", "Name", true, "Select Character To Add");
         }
     
         public DataObjectOperationResult CommitChanges(AuthorFormModel postedData)

@@ -1,0 +1,28 @@
+﻿@model RavenDesk.Core.Data.DataObjectOperationResult
+@{
+    Layout = "~/Views/Shared/_ModalPopup.cshtml";
+}
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            //Resubmits the search form on the page behind modal to refresh the grid
+            $("#frmSearch").submit();
+        });
+    </script>
+}
+
+@section Header
+{
+    Success!
+}
+
+@section Body
+{
+    @Model.Message
+}
+
+@section Footer
+{
+    <input type="button" value="Close" class="btn btn-danger" onclick="ClosePopup()"/>
+}

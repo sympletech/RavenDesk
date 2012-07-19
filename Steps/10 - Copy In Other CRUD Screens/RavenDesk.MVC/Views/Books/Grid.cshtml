@@ -1,0 +1,36 @@
+﻿@using RavenDesk.MVC.Helpers;
+@using RavenDesk.Core.Models.Interfaces;
+
+@model PageableSearchResults<IBook>
+@{Layout = null;}
+
+<script type="text/javascript">
+    $(function() {
+        //View Detail Popup
+        $("#book-grid .data-row").click(function () {
+            Wait(true);
+            var id = $(this).attr("data-RavenDesk-id");
+            $.get('@Url.Content("~/Books/Edit/")', { bId: id }, function (data) {
+                $("#PopUp").html(data);
+                Wait(false);
+            });
+        });
+    });
+</script>
+
+<table id="book-grid" class="datagrid">
+    <tr class="header_row">
+        <td>Title</td>
+        <td>Publish Date</td>
+        <td>Best Seller</td>
+    </tr>
+    @foreach (var book in Model.Items)
+    {
+        <tr class="data-row hoverable" data-RavenDesk-id="@book.Id">
+            <td>@book.Title</td>
+            <td>@book.PublishDate</td>
+            <td>@book.BestSeller</td>
+        </tr>
+    }
+</table>
+@Model.GeneratePager("ReloadGrid")

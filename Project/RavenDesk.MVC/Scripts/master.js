@@ -3,7 +3,8 @@
 });
 
 function BindUI() {
-    $(".popup-link").click(function(e) {
+    $(".popup-link").unbind('click');
+    $(".popup-link").click(function (e) {
         e.preventDefault();
         var href = $(this).attr('href');
         $.get(href, function(data) {

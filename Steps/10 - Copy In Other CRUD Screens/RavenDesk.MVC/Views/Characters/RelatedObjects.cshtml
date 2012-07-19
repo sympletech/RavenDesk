@@ -1,0 +1,42 @@
+﻿@using RavenDesk.MVC.Helpers
+@model RavenDesk.MVC.Models.Characters.CharacterFormModel
+@{Layout = null;}
+<script type="text/javascript">
+    $(function () {
+        $("#ddlAddAuthor, #ddlAddBook").change(function () {
+            Wait(true);
+            $.post('@Url.Content("~/Characters/AddRelationship")',
+                { characterId: '@Model.Id', realtedId: $(this).val() }, function (data) {
+                    $("#related-objects-wrapper").html(data);
+                    Wait(false);
+            });
+        });
+        
+        $(".remove-link").ajaxlink("post", function (data) {
+            $("#related-objects-wrapper").html(data);
+        });
+    });
+</script>
+
+<div class="well">
+    <b>Books</b>
+    <ul>
+        @foreach (var book in Model.Books)
+        {
+            <li>@book.Title <a class="remove-link" 
+                               href="@Url.Content("~/Characters/RemoveRelationship/")?characterrId=@Model.Id&realtedId=@book.Id">[Remove]</a></li>
+        }
+    </ul>
+    @Html.EditDataField("Add Book", Html.DropDownList("ddlAddBook", Model.BookAssoiationOptions))
+</div>
+<div class="well">
+    <b>Authors</b>
+    <ul>
+        @foreach (var author in Model.Authors)
+        {
+            <li>@author.LastName, @author.FirstName <a class="remove-link" 
+                href="@Url.Content("~/Characters/RemoveRelationship/")?characterId=@Model.Id&realtedId=@author.Id">[Remove]</a></li>
+        }
+    </ul>
+    @Html.EditDataField("Add Author", Html.DropDownList("ddlAddAuthor", Model.AuthorAssoiationOptions))
+</div>

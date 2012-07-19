@@ -5,14 +5,20 @@
 @{Layout = null;}
 
 <script type="text/javascript">
-    function EditAuthor(id) {
-        $.get('@Url.Content("~/Authors/Edit/")', { id: id }, function (data) {
-            $("#PopUp").html(data);
+    $(function() {
+        //View Detail Popup
+        $("#author-grid .data-row").click(function() {
+            Wait(true);
+            var id = $(this).attr("data-RavenDesk-id");
+            $.get('@Url.Content("~/Authors/Edit/")', { aId: id }, function(data) {
+                $("#PopUp").html(data);
+                Wait(false);
+            });
         });
-    }
+    });
 </script>
 
-<table class="datagrid">
+<table id="author-grid" class="datagrid">
     <tr class="header_row">
         <td>Last Name</td>
         <td>First Name</td>
@@ -22,7 +28,7 @@
     </tr>
     @foreach (var author in Model.Items)
     {
-        <tr class="data-row hoverable" onclick="EditAuthor('@author.Id')">
+        <tr class="data-row hoverable" data-RavenDesk-id="@author.Id">
             <td>@author.LastName</td>
             <td>@author.FirstName</td>
             <td>@author.EmailAddress</td>

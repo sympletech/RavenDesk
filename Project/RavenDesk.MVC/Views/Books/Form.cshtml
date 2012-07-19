@@ -1,0 +1,58 @@
+﻿@using RavenDesk.MVC.Helpers;
+@model RavenDesk.MVC.Models.Books.BookFormModel
+@{Layout = "~/Views/Shared/_ModalPopup.cshtml";}
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            $("#frmBook").ajaxform(function (data) {
+                $("#modal_wrapper").html(data);
+            });
+
+            $("#PublishDate").datepicker();
+
+            $("#remove-link").ajaxlink("post", function () {
+                $("#frmSearch").submit();
+                ClosePopup();
+            });
+        });
+
+        function SubmitBookForm() {
+            $("#frmBook").submit();
+        }
+    </script>
+}
+@section Header
+{
+    @Model.PopupTitle
+}
+@section Body
+{
+    @Html.ValidationSummary()
+    <div class="row-fluid">
+        <div class="span6">
+            <form id="frmBook" class="form-horizontal" action="@Url.Content("~/Books/AddUpatde/")">
+            @Html.HiddenFor(x => x.Id)
+            @Html.EditDataField("Title", Html.TextBoxFor(x => x.Title), Html.ValidationMessageFor(x => x.Title))
+            @Html.EditDataField("Publish Date", Html.TextBoxFor(x => x.PublishDate), Html.ValidationMessageFor(x => x.PublishDate))
+            @Html.EditDataField("Best Seller", Html.CheckBoxFor(x => x.BestSeller))
+            @Html.EditDataField("Summary", Html.TextAreaFor(x => x.Summary))
+            </form>
+        </div>
+        @if (Model.Id != null)
+        {
+            <div style="text-align: right; padding-bottom: 5px;">
+                <a id="remove-link" href="@Url.Content("~/Books/Remove/?id=" + Model.Id)">[Delete]</a>
+            </div>
+            <div class="span6" id="related-objects-wrapper">
+                @Html.Partial("RelatedObjects")
+            </div>
+        }
+    </div>
+
+}
+@section Footer
+{
+    <input type="button" value="Submit" class="btn btn-primary" onclick="SubmitBookForm()" />
+    <input type="button" value="Cancel" class="btn btn-danger" onclick="ClosePopup()" />
+}
