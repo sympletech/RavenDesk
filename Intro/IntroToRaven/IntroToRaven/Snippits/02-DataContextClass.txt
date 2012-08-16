@@ -1,0 +1,29 @@
+﻿using System;
+using Raven.Client;
+using Raven.Client.Document;
+
+namespace IntroToRaven
+{
+    class DataContext : IDisposable
+    {
+        private readonly IDocumentStore _documentStore;
+        private IDocumentSession _session;
+        public IDocumentSession Session { get { return this._session; } }
+
+
+        public DataContext()
+        {
+            this._documentStore = new DocumentStore
+            {
+                Url = "http://localhost:8080"
+            }.Initialize();
+
+            this._session = this._documentStore.OpenSession();            
+        }
+        public void Dispose()
+        {
+            this._session.Dispose();
+            this._documentStore.Dispose();
+        }
+    }
+}

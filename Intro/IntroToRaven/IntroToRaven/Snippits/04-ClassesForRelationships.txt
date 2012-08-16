@@ -1,0 +1,18 @@
+﻿    class Order
+    {
+        public string CustomerName { get; set; }
+        public DateTime OrderDate { get; set; }
+        public List<OrderItem> Items { get; set; }
+        
+		public double OrderTotal { get {
+            return this.Items.Sum(x => x.Qty * x.ItemCost);
+        } }
+        
+    }
+
+    public class OrderItem
+    {
+        public string ProductName { get; set; }
+        public int Qty { get; set; }
+        public double ItemCost { get; set; }
+    }

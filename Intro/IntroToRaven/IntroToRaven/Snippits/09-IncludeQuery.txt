@@ -1,0 +1,12 @@
+﻿            using (var dContext = new DataContext())
+            {
+                //Include
+                var cookieOrderInclude = dContext.Session
+                    .Include<Order>(x => x.CustomerId)
+                    .Load<Order>("orders/65");
+
+                //Does Not Make a DB Call
+                cookieOrderInclude.Customer = dContext.Session.Load<Customer>(cookieOrderInclude.CustomerId);
+
+                var inspect = 1;
+            }

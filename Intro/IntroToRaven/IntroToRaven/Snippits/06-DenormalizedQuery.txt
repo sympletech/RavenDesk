@@ -1,0 +1,7 @@
+﻿            using (var dContext = new DataContext())
+            {
+                var cookieOrderByFullID = dContext.Session.Load<Order>("orders/33");
+                var cookieOrderByIntID = dContext.Session.Load<Order>(33);
+
+                var inspect = cookieOrderByFullID;
+            }

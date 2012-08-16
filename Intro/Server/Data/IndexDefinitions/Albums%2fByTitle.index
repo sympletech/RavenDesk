@@ -1,0 +1,18 @@
+{
+  "Name": "Albums/ByTitle",
+  "Map": "docs.Albums\r\n\t.Select(album => new {Title = album.Title})",
+  "Maps": [
+    "docs.Albums\r\n\t.Select(album => new {Title = album.Title})"
+  ],
+  "Reduce": null,
+  "TransformResults": null,
+  "IsMapReduce": false,
+  "IsCompiled": false,
+  "IsTemp": false,
+  "Stores": {},
+  "Indexes": {},
+  "SortOptions": {},
+  "Analyzers": {},
+  "Fields": [],
+  "Type": "Map"
+}

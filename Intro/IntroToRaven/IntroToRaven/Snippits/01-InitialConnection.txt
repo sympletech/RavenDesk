@@ -1,0 +1,29 @@
+﻿            //Initilize A New Document Store
+            var docStore = (new DocumentStore
+                                {
+                                    Url = "http://localhost:8080"
+                                }).Initialize();
+            
+            //Open A Session
+            using(var db = docStore.OpenSession())
+            {
+
+                var album1 = (from x in db.Query<Album>()
+                             where x.Title == "Ten"
+                             select x).FirstOrDefault();
+                Console.WriteLine(album1.Id);
+
+                var album2 = db.Query<Album>().FirstOrDefault(x => x.Title == "Dark Side Of The Moon");
+                Console.WriteLine(album2.Id);
+
+
+                var allGenres = db.Query<Genre>();
+                foreach (var genre in allGenres)
+                {
+                    Console.WriteLine(genre.Name);
+                }
+
+            }
+
+            //Dispose of the Store
+            docStore.Dispose();

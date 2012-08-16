@@ -1,0 +1,64 @@
+﻿using System;
+using System.Linq;
+using IntroToRaven.Models;
+using Raven.Client.Indexes;
+
+namespace IntroToRaven
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Open A Session
+            using (var dContext = new DataContext())
+            {
+                string indexName = "Album/SoldByArtist";
+
+                CreateMapReduceIndex(indexName, dContext);
+                
+                //Were just going to pull the entire Index collection
+                var allArtists = dContext.Session.Query<ArtistAlbumsSoldCount>(indexName).Take(10);
+                foreach (var artist in allArtists)
+                {
+                    Console.WriteLine(artist.ArtistName + " | " + artist.AlbumsSold);
+                }
+            }
+        }
+  
+        private static void CreateMapReduceIndex(string indexName, DataContext dContext)
+        {
+            dContext.DocumentStore.DatabaseCommands.DeleteIndex(indexName);
+
+            //Creates an index specificaly for Getting The Albums Sold By Artist Count
+            dContext.DocumentStore
+                    .DatabaseCommands
+            //Notice the IndexDefinitionBuilder now also contains a class of what the results will reduce to
+                    .PutIndex(indexName, new IndexDefinitionBuilder<Album, ArtistAlbumsSoldCount>
+                             {
+                                 //Map is what we search on
+                                 Map = albums => albums.Select(x => new
+                                 {
+                                     ArtistId = x.Artist.Id,
+                                     ArtistName = x.Artist.Name,
+                                     AlbumsSold = x.CountSold
+                                 }),
+                                 //Reduce is what the results of the query will return
+                                 Reduce = results => from result in results
+                                                     group result by result.ArtistId
+                                                     into g select new
+                                                     {
+                                                         ArtistId = g.Key,
+                                                         ArtistName = g.FirstOrDefault().ArtistName,
+                                                         AlbumsSold = g.Sum(x => x.AlbumsSold)
+                                                     }
+                             });
+        }
+
+        public class ArtistAlbumsSoldCount
+        {
+            public string ArtistId { get; set; }
+            public string ArtistName { get; set; }
+            public int AlbumsSold { get; set; }
+        }
+    }
+}

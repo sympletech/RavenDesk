@@ -1,0 +1,18 @@
+{
+  "Name": "Album/SoldByArtist",
+  "Map": "docs.Albums\r\n\t.Select(x => new {ArtistId = x.Artist.Id, ArtistName = x.Artist.Name, AlbumsSold = x.CountSold})",
+  "Maps": [
+    "docs.Albums\r\n\t.Select(x => new {ArtistId = x.Artist.Id, ArtistName = x.Artist.Name, AlbumsSold = x.CountSold})"
+  ],
+  "Reduce": "results\r\n\t.GroupBy(result => result.ArtistId)\r\n\t.Select(g => new {ArtistId = g.Key, ArtistName = g.FirstOrDefault().ArtistName, AlbumsSold = g.Sum(x => ((System.Int32)(x.AlbumsSold)))})",
+  "TransformResults": null,
+  "IsMapReduce": true,
+  "IsCompiled": false,
+  "IsTemp": false,
+  "Stores": {},
+  "Indexes": {},
+  "SortOptions": {},
+  "Analyzers": {},
+  "Fields": [],
+  "Type": "MapReduce"
+}

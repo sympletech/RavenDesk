@@ -1,0 +1,23 @@
+﻿            using (var dContext = new DataContext())
+            {
+                var nOrder = new Order
+                {
+                    CustomerName = "Cookie Monster",
+                    OrderDate = DateTime.Parse("8/15/2011"),
+                    Items = new List<OrderItem>()
+                };
+                nOrder.Items.Add(new OrderItem {
+                    ProductName = "Chocolate Chip Cookie",
+                    Qty = 24,
+                    ItemCost = 1.50
+                });
+                nOrder.Items.Add(new OrderItem
+                {
+                    ProductName = "Girl Scout Cookie",
+                    Qty = 12,
+                    ItemCost = 3.50
+                });
+
+                dContext.Session.Store(nOrder);
+                dContext.Session.SaveChanges();
+            }

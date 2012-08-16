@@ -1,0 +1,22 @@
+﻿        static void Main(string[] args)
+        {
+            //Open A Session
+            using (var dContext = new DataContext())
+            {
+                dContext.DocumentStore.DatabaseCommands.DeleteIndex("AlbumsByTitle");
+                
+                //Creates an index specificaly for searching on the album title
+                dContext.DocumentStore.DatabaseCommands
+                    .PutIndex("AlbumsByTitle", new IndexDefinitionBuilder<Album>
+                    {
+                        Map = albums => albums.Select(x => new { x.Title })
+                    });
+
+                var allAlbums = dContext.Session.Query<Album>("AlbumsByTitle").Where(x => x.Title.StartsWith("A"));
+
+                foreach (var album in allAlbums)
+                {
+                    Console.WriteLine(album.Title);
+                }
+            }
+        }

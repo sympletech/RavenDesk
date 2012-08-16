@@ -1,0 +1,7 @@
+﻿                var allAlbums = dContext.Session.Query<Album>();
+                Random rnd = new Random();
+                foreach (var album in allAlbums)
+                {
+                    album.CountSold = rnd.Next(500);
+                }
+                dContext.Session.SaveChanges();
